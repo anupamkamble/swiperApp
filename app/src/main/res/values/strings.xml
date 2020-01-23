@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">ProfileApp</string>
+
+    <string name="network_connection_error">Internet connection lost, please retry again</string>
+    <string name="network_default_error">Something wrong happened, please retry again</string>
+    <string name="network_internal_error">Our systems got an error, please retry again</string>
+
+    <string name="network_offline_msg">Please check connection!!</string>
+    <string name="network_online_msg">Your Are Back!!</string>
+    <string name="fetching_fav_profile">Fetching Favourite Profile</string>
+
+    <string name="server_connection_error">Not able to connect, please retry again</string>
+    <string name="success">Got the response</string>
+
+    <string name="next_profile">Next Profile</string>
+    <string name="add_to_fav">Add to Favourite!</string>
+
+
+<!--    Profile MESSAGES-->
+    <string name="my_contact_info">My Contact Info</string>
+    <string name="my_email_info">My Email</string>
+    <string name="my_address_info">My address is</string>
+    <string name="my_dob_info">My Date of Birthday</string>
+    <string name="my_name">My Name is</string>
+    <string name="date_format">dd-MMM-yyyy</string>
+</resources>
