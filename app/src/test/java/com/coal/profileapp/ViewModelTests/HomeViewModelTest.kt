@@ -70,21 +70,21 @@ class HomeViewModelTest {
     @Test
     fun testAPISuccess(){
         Mockito.`when`(userRepo.getProfile()).thenReturn(Single.just(User()))
-        viewModel.getProfiles()
+        viewModel.getProfiles(false)
         Mockito.verify(observer).onChanged(ViewStates.success())
     }
 
     @Test
     fun testAPIFailure(){
         Mockito.`when`(userRepo.getProfile()).thenReturn(Single.error(Throwable("error")))
-        viewModel.getProfiles()
+        viewModel.getProfiles(false)
         Mockito.verify(observer).onChanged(ViewStates.error())
     }
 
     @Test
     fun testGetOfflineData(){
         Mockito.`when`(databaseService.userDao().getAllUsers()).thenReturn(Single.just(ArrayList<UserEntity>()))
-        viewModel.getAllOfflineUsers()
+        viewModel.getAllOfflineUsers(false)
         Mockito.verify(observer).onChanged(ViewStates.success())
     }
 
