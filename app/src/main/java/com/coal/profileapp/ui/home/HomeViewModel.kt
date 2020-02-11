@@ -25,7 +25,6 @@ class HomeViewModel(compositeDesposible : CompositeDisposable?,
 
     var profileMutableLiveData: MutableLiveData<User> = MutableLiveData()
     var offlineLiveData: MutableLiveData<ArrayList<User>> = MutableLiveData()
-    var swipeRightLiveData: MutableLiveData<UserEntity> = MutableLiveData()
     val stateWithMessage: MutableLiveData<ViewStates<Int>> = MutableLiveData()
     var dbOpertaion: MutableLiveData<Boolean> = MutableLiveData()
     var notifyDataChanged: MutableLiveData<Boolean> = MutableLiveData()
