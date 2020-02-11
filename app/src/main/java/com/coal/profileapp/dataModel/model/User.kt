@@ -1,6 +1,5 @@
 package com.coal.profileapp.dataModel.model
 
-import android.graphics.Bitmap
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -44,13 +43,10 @@ data class User(
     @SerializedName("picture")
     var picture : String,
 
-    val isOffline : Boolean = false,
-
-    val bitmap : Bitmap?
-
+    val isOffline : Boolean = false
 
 ){
-    constructor() : this("",Name("","",""),Location("","","",""),"","",-1,"","","",false, null)
+    constructor() : this("",Name("","",""),Location("","","",""),"","",-1,"","","",false)
 
     data  class Name(
         @Expose

@@ -1,6 +1,5 @@
 package com.coal.profileapp.ui.home
 
-import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
 import com.coal.profileapp.R
 import com.coal.profileapp.dataModel.local.DatabaseService
@@ -12,7 +11,6 @@ import com.coal.profileapp.ui.baseclasses.BaseViewModel
 import com.coal.profileapp.utlities.globals.AppLogger
 import com.coal.profileapp.utlities.globals.NetworkConnectivity
 import com.coal.profileapp.utlities.globals.ViewStates
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
@@ -26,11 +24,11 @@ class HomeViewModel(compositeDesposible : CompositeDisposable?,
 
 
     var profileMutableLiveData: MutableLiveData<User> = MutableLiveData()
-    var offlineLiveData: MutableLiveData<List<User>> = MutableLiveData()
+    var offlineLiveData: MutableLiveData<ArrayList<User>> = MutableLiveData()
     var swipeRightLiveData: MutableLiveData<UserEntity> = MutableLiveData()
     val stateWithMessage: MutableLiveData<ViewStates<Int>> = MutableLiveData()
     var dbOpertaion: MutableLiveData<Boolean> = MutableLiveData()
-    var swipeLiveData: MutableLiveData<String> = MutableLiveData()
+    var notifyDataChanged: MutableLiveData<Boolean> = MutableLiveData()
 
 
 
@@ -38,13 +36,14 @@ class HomeViewModel(compositeDesposible : CompositeDisposable?,
         val TAG = "HomeViewModel"
     }
     override fun onCreate() {
+
+
     }
 
     override fun onCleared() {
         super.onCleared()
         if(compositeDesposible != null && !compositeDesposible.isDisposed){
             compositeDesposible.dispose()
-            compositeDesposible.clear()
         }
     }
 
@@ -63,16 +62,14 @@ class HomeViewModel(compositeDesposible : CompositeDisposable?,
         dbOpertaion.postValue(true)
     }
 
-    fun getAllOfflineUsers(){
+    fun getAllOfflineUsers(notify: Boolean){
         compositeDesposible!!.add(
-
             dbService.userDao()
                 .getAllUsers()
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     val list = ArrayList<User>()
                     for (user in it.iterator()){
-                        val bmp = BitmapFactory.decodeByteArray(user.image, 0, user.image.size)
                         var convertedUser = User(
                             gender = user.gender,
                             name = User.Name(user.title,user.first,user.last),
@@ -83,9 +80,7 @@ class HomeViewModel(compositeDesposible : CompositeDisposable?,
                             phone = user.phone,
                             cell = user.cell,
                             isOffline = true,
-                            bitmap = bmp,
-                            picture = ""
-                        )
+                            picture = user.imageUrl)
 
                         list.apply {
                             add(convertedUser)
@@ -93,39 +88,16 @@ class HomeViewModel(compositeDesposible : CompositeDisposable?,
                     }
                     offlineLiveData.postValue(list)
                     stateWithMessage.postValue(ViewStates.success(R.string.success))
+                    if(notify) notifyDataChanged.postValue(true)
                 },
                     {
                         AppLogger.e(TAG,"exception came offline data $it")
                         stateWithMessage.postValue(ViewStates.error(R.string.server_connection_error))
                     })
         )
-
-
-        compositeDesposible.add(
-
-            dbService.userDao()
-                .getAllUsersById()
-                .map {
-                    it.get(0).dob>0
-                            return@map it.get(0)
-                }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    {
-
-                    },{
-
-                    },{
-
-                    },{
-
-                    }
-                )
-        )
     }
 
-    fun getProfiles() {
+    fun getProfiles(notify:Boolean) {
 
         if (connectivity.isNetworkConnected()){
             compositeDesposible!!.add(
@@ -135,6 +107,8 @@ class HomeViewModel(compositeDesposible : CompositeDisposable?,
                         AppLogger.e(TAG, it.toString())
                         profileMutableLiveData.postValue(it)
                         stateWithMessage.postValue(ViewStates.success(R.string.success))
+                        if(notify) notifyDataChanged.postValue(true)
+
                     },
                         {
                             AppLogger.e(TAG, "error:-onCreate")

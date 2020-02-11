@@ -1,40 +1,17 @@
 package com.coal.profileapp.utlities.globals
 
-import android.util.Log
+import timber.log.Timber
 
 
-class AppLogger {
-    companion object {
+object AppLogger {
+
         var isEnabled = true
             private set
 
-        fun e(tag: String, msg: String) {
-            if (isEnabled) Log.e(tag, msg)
-        }
+        init { if (isEnabled) Timber.plant(Timber.DebugTree()) }
 
-        fun e(tag: String, msg: String, e: Throwable) {
-            if (isEnabled) Log.e(tag, msg, e)
-        }
-
-        fun w(tag: String, msg: String) {
-            if (isEnabled) Log.w(tag, msg)
-        }
-
-
-        fun w(tag: String, msg: String, e: Throwable) {
-            if (isEnabled) Log.w(tag, msg, e)
-        }
-
-        fun i(tag: String, msg: String) {
-            if (isEnabled) Log.i(tag, msg)
-        }
-
-        fun d(tag: String, msg: String) {
-            if (isEnabled) Log.d(tag, msg)
-        }
-
-        fun v(tag: String, msg: String) {
-            if (isEnabled) Log.v(tag, msg)
-        }
-    }
+        fun e( TAG: String, msg: String){ Timber.tag(TAG).e(msg) }
+        fun d( TAG: String, msg: String){ Timber.tag(TAG).d(msg) }
+        fun i( TAG: String, msg: String){ Timber.tag(TAG).i(msg) }
+        fun v( TAG: String, msg: String){ Timber.tag(TAG).v(msg) }
 }

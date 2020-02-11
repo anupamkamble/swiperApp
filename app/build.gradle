@@ -72,18 +72,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
 
     //glide
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     //json
     implementation 'com.google.code.gson:gson:2.8.5'
-
-    //swipe cards
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
-    implementation "androidx.cardview:cardview:1.0.0"
-    implementation 'com.mindorks.android:placeholderview:1.0.3'
-    kapt 'com.mindorks.android:placeholderview-compiler:1.0.3'
-
 
     //roomdb
     implementation 'android.arch.persistence.room:rxjava2:1.1.1'
@@ -117,5 +110,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
+    // loggin
+    implementation "com.jakewharton.timber:timber:4.7.1"
+
+    //swipe cards
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
 
 }

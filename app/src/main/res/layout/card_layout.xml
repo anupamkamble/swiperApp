@@ -72,14 +72,13 @@
                 android:id="@+id/profileContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_5"
+                android:layout_marginLeft="@dimen/padding_5"
                 android:layout_marginTop="@dimen/div_margin_top"
                 android:orientation="vertical"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profileImageView"
-                android:layout_marginLeft="@dimen/padding_5"
-                android:layout_marginStart="@dimen/padding_5"
-                >
+                app:layout_constraintTop_toBottomOf="@id/profileImageView">
 
                 <TextView
                     android:id="@+id/nameAgeTxt"

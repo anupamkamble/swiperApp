@@ -51,6 +51,6 @@ data class UserEntity(
     @ColumnInfo(name = "cell")
     var cell : String,
 
-    @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
-    val image: ByteArray
+    @ColumnInfo(name = "imageUrl")
+    var imageUrl : String
 )
