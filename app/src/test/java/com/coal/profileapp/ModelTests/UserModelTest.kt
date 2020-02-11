@@ -1,13 +1,7 @@
 package com.coal.profileapp.ModelTests
 
-import android.content.Context
-import android.graphics.Bitmap
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
-import com.coal.profileapp.dataModel.local.entity.UserEntity
 import com.coal.profileapp.dataModel.model.User
-import com.coal.profileapp.utlities.globals.CardClass
-import com.mindorks.placeholderview.SwipePlaceHolderView
 import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
